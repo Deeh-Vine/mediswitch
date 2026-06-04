@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -307,11 +307,22 @@ export default function Results() {
 
                   {/* Micro comparative molecules bulleting */}
                   <div className="pt-2">
-                    <div className="inline-flex gap-2 items-center text-xs text-primary-dark">
+                    <div className="inline-flex gap-2 items-center text-xs text-primary-dark mb-4">
                       <CheckCircle className="w-4 h-4 shrink-0" />
                       <span>Exact active molecular replacement</span>
                     </div>
                   </div>
+
+                  {/* ===== EXPLICIT GENERIC PRICE DIV ===== */}
+                  <div className="bg-primary-pale/40 p-3.5 rounded-xl border border-primary-light/40 inline-block w-full sm:w-auto">
+                    <span className="text-[10px] font-bold text-text-sec uppercase tracking-widest block mb-1">
+                      Generic Unit Price
+                    </span>
+                    <span className="text-2xl font-bold text-primary-dark font-mono block">
+                      {formatNaira(generic.price)}
+                    </span>
+                  </div>
+
                 </div>
 
                 {/* Right Column: Actions */}

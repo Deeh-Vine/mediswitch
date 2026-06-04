@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Calculator, TrendingDown } from 'lucide-react';
 
 export default function SavingsBadge({ genericPrice, brandedPrice }) {

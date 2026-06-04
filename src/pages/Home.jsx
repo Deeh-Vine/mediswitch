@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Shield, ChevronRight, HelpCircle, Pill } from 'lucide-react';
 import Navbar from '../components/Navbar';

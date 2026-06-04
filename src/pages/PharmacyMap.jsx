@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { motion } from 'motion/react';
 import {
   ArrowLeft,
   MapPin,
@@ -62,6 +61,7 @@ export default function PharmacyMap() {
   useEffect(() => {
     if (displayedPharmacies.length > 0) {
       const initialStore = displayedPharmacies[0];
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setSelectedPharmacy(initialStore);
       setMapCenter([initialStore.lat, initialStore.lng]);
       setMapZoom(13);
