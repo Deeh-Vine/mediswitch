@@ -78,7 +78,7 @@ export default function PharmacyMap() {
     <div className="min-h-screen bg-bg-warm flex flex-col font-sans text-dark-navy">
       <Navbar />
 
-      <main className="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-10 flex flex-col space-y-6">
+      <main className="grow max-w-7xl mx-auto w-full px-4 sm:px-6 py-10 flex flex-col space-y-6">
         
         {/* Dynamic header and navigational controls */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -110,7 +110,7 @@ export default function PharmacyMap() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white rounded-2xl border border-border-dev overflow-hidden shadow-xs">
           
           {/* L: Directory sidebar panel scroll (5 columns) */}
-          <div className="lg:col-span-5 h-[400px] lg:h-[600px] flex flex-col border-b lg:border-b-0 lg:border-r border-border-dev">
+          <div className="lg:col-span-5 h-100 lg:h-150 flex flex-col border-b lg:border-b-0 lg:border-r border-border-dev">
             
             <div className="p-4 bg-gray-50 border-b border-border-dev flex justify-between items-center shrink-0">
               <span className="text-xs font-bold text-text-sec uppercase tracking-wider">
@@ -122,13 +122,13 @@ export default function PharmacyMap() {
             </div>
 
             {displayedPharmacies.length === 0 ? (
-              <div className="flex-grow flex flex-col items-center justify-center p-6 text-center space-y-4">
+              <div className="grow flex flex-col items-center justify-center p-6 text-center space-y-4">
                 <MapPin className="w-12 h-12 text-text-mut" />
                 <h4 className="font-serif font-bold text-dark-navy">No stockist found</h4>
                 <p className="text-xs text-text-sec">We currently have no verified partner list targeting this request.</p>
               </div>
             ) : (
-              <div className="flex-grow overflow-y-auto divide-y divide-border-dev">
+              <div className="grow overflow-y-auto divide-y divide-border-dev">
                 {displayedPharmacies.map((pharm) => {
                   const isActive = selectedPharmacy?.id === pharm.id;
                   return (
@@ -197,7 +197,7 @@ export default function PharmacyMap() {
           </div>
 
           {/* R: Interactive Map Section canvas (7 columns) */}
-          <div className="lg:col-span-7 h-[450px] lg:h-[600px] bg-bg-warm relative">
+          <div className="lg:col-span-7 h-112.5 lg:h-150 bg-bg-warm relative">
             <MapContainer
               center={mapCenter}
               zoom={mapZoom}
@@ -226,7 +226,7 @@ export default function PharmacyMap() {
                   }}
                 >
                   <Popup>
-                    <div className="p-1 space-y-1 text-dark-navy text-xs min-w-[150px] font-sans">
+                    <div className="p-1 space-y-1 text-dark-navy text-xs min-w-37.5 font-sans">
                       <strong className="block text-sm font-bold text-primary-dark leading-tight">
                         {pharm.name}
                       </strong>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -16,6 +16,7 @@ import useSearch from '../hooks/useSearch';
 import { getConstituentExplanation } from '../utils/api';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import SavingsBadge from '../components/SavingsBadge';
 
 export default function Results() {
   const location = useLocation();
@@ -272,7 +273,7 @@ export default function Results() {
           }}
           initial="hidden"
           animate="show"
-          className="space-y-4"
+          className="space-y-6"
         >
           {matchedDrug.genericAlternatives.map((generic) => (
             <motion.div
@@ -281,67 +282,40 @@ export default function Results() {
                 hidden: { opacity: 0, y: 15 },
                 show: { opacity: 1, y: 0 }
               }}
-              className="bg-white rounded-2xl border border-primary-light/30 p-5 md:p-6 shadow-xs hover:shadow-md hover:border-primary-mid transition-all flex flex-col md:flex-row justify-between gap-6"
+              className="bg-white rounded-2xl border border-primary-light/30 p-5 md:p-6 shadow-xs hover:shadow-md hover:border-primary-mid transition-all flex flex-col gap-6"
             >
-              {/* Left Column: Identifiers */}
-              <div className="grow space-y-2">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h4 className="text-lg font-bold text-dark-navy font-serif">
-                    {generic.name}
-                  </h4>
-                  <span className="inline-flex items-center gap-1 bg-success-bg text-primary-dark px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                    <ShieldCheck className="w-3 h-3" />
-                     NAFDAC Approved
-                  </span>
-                </div>
-                
-                <p className="text-xs text-text-sec font-medium">
-                  Manufacturer: <span className="text-dark-navy">{generic.manufacturer}</span>
-                </p>
-
-                <p className="text-xs text-text-mut">
-                  NAFDAC Registration No: <span className="font-mono bg-gray-100 px-1.5 py-0.5 rounded">{generic.nafdacNumber}</span>
-                </p>
-
-                {/* Micro comparative molecules bulleting */}
-                <div className="pt-2">
-                  <div className="inline-flex gap-2 items-center text-xs text-primary-dark">
-                    <CheckCircle className="w-4 h-4 shrink-0" />
-                    <span>Exact active molecular replacement</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: Savings Dashboard (Most visually dominant) */}
-              <div className="flex flex-col justify-between items-end gap-4 shrink-0 border-t md:border-t-0 md:border-l border-border-dev pt-4 md:pt-0 md:pl-6 text-right">
-                
-                {/* Savings Amber Badge Block - Super high contrast visual prominence */}
-                <div className="bg-savings-bg/90 text-dark-navy p-3.5 rounded-xl border border-savings-amber w-full sm:w-auto text-center md:text-right space-y-1">
-                  <div className="flex items-center justify-between md:justify-end gap-4">
-                    <span className="text-[10px] font-bold text-text-sec uppercase tracking-widest block">
-                      Generic Price
-                    </span>
-                    <span className="text-sm font-semibold text-primary-dark font-mono block">
-                      {formatNaira(generic.price)}
+              <div className="flex flex-col md:flex-row justify-between gap-6">
+                {/* Left Column: Identifiers */}
+                <div className="grow space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h4 className="text-lg font-bold text-dark-navy font-serif">
+                      {generic.name}
+                    </h4>
+                    <span className="inline-flex items-center gap-1 bg-success-bg text-primary-dark px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                      <ShieldCheck className="w-3 h-3" />
+                       NAFDAC Approved
                     </span>
                   </div>
                   
-                  <div className="flex items-center justify-between md:justify-end gap-4">
-                    <span className="text-xs font-semibold text-danger block">
-                      Total Savings
-                    </span>
-                    <span className="text-xl font-extrabold text-danger font-serif block">
-                      -{formatNaira(generic.savings)}
-                    </span>
-                  </div>
+                  <p className="text-xs text-text-sec font-medium">
+                    Manufacturer: <span className="text-dark-navy">{generic.manufacturer}</span>
+                  </p>
 
-                  <div className="bg-primary-dark text-white text-[10px] py-1 px-2.5 rounded-full font-bold uppercase tracking-wide inline-block">
-                    Save {generic.savingsPercent}%
+                  <p className="text-xs text-text-mut">
+                    NAFDAC Registration No: <span className="font-mono bg-gray-100 px-1.5 py-0.5 rounded">{generic.nafdacNumber}</span>
+                  </p>
+
+                  {/* Micro comparative molecules bulleting */}
+                  <div className="pt-2">
+                    <div className="inline-flex gap-2 items-center text-xs text-primary-dark">
+                      <CheckCircle className="w-4 h-4 shrink-0" />
+                      <span>Exact active molecular replacement</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Operations Actions & Redirection Button Links */}
-                <div className="flex gap-2 w-full md:w-auto">
+                {/* Right Column: Actions */}
+                <div className="flex flex-row md:flex-col justify-end items-end gap-3 shrink-0 border-t md:border-t-0 md:border-l border-border-dev pt-4 md:pt-0 md:pl-6 w-full md:w-auto">
                   <button
                     onClick={() => handleOpenTrustPanel(generic, matchedDrug)}
                     className="flex-1 md:flex-none py-2.5 px-4 rounded-xl border border-primary-mid text-primary-dark hover:bg-success-bg/20 text-xs font-bold transition-all cursor-pointer whitespace-nowrap"
@@ -357,6 +331,9 @@ export default function Results() {
                   </button>
                 </div>
               </div>
+
+              {/* Interactive Calculator Section */}
+              <SavingsBadge genericPrice={generic.price} brandedPrice={matchedDrug.brandedPrice} />
             </motion.div>
           ))}
         </motion.div>
