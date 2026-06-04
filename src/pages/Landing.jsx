@@ -524,7 +524,7 @@ export default function Landing() {
       {/* ═══════════════════════════════════════
           SECTION 9: ABOUT RX CODES & SDG
       ═══════════════════════════════════════ */}
-      <section className="bg-dark-navy text-white py-16 md:py-24">
+      <section id="about" className="bg-dark-navy text-white py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -564,7 +564,7 @@ export default function Landing() {
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               className="bg-white/5 border border-white/10 rounded-2xl p-8 space-y-6"
-            >
+          >
               <div className="space-y-2">
                 <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Global Standards Status</span>
                 <div className="flex items-center gap-3 mt-3">
