@@ -112,7 +112,7 @@ export default function Landing() {
       ═══════════════════════════════════════ */}
       <AnimatePresence>
         {showAuth && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
             {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -264,7 +264,7 @@ export default function Landing() {
             <span className="flex-1 py-4 px-4 text-text-mut text-sm font-medium text-left">
               Search drugs... e.g. Augmentin, Panadol
             </span>
-            <div className="bg-primary-dark group-hover:bg-[#0A6640] text-white font-bold text-sm px-5 py-4 transition-colors shrink-0 flex items-center gap-1.5">
+            <div className="bg-primary-dark group-hover:bg-primary-dark text-white font-bold text-sm px-5 py-4 transition-colors shrink-0 flex items-center gap-1.5">
               <Search className="w-4 h-4" />
               <span className="hidden sm:inline">Search</span>
             </div>
@@ -473,7 +473,7 @@ export default function Landing() {
           </div>
 
           <div className="overflow-x-auto rounded-2xl border border-border-dev shadow-sm">
-            <table className="w-full min-w-[560px] text-sm border-collapse">
+            <table className="w-full min-w-140 text-sm border-collapse">
               <thead>
                 <tr className="bg-bg-warm">
                   <th className="text-left p-4 text-xs font-bold text-text-sec uppercase tracking-wider border-b border-border-dev w-2/5">
@@ -614,7 +614,7 @@ export default function Landing() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={() => navigate('/home')}
-              className="bg-primary-dark hover:bg-[#0A6640] text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-sm active:scale-95 inline-flex items-center justify-center gap-2"
+              className="bg-primary-dark hover:bg-primary-mid text-white font-bold px-8 py-3.5 rounded-xl transition-all shadow-sm active:scale-95 inline-flex items-center justify-center gap-2"
             >
               <Search className="w-4 h-4" />
               Search drugs for free
